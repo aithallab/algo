@@ -1,0 +1,47 @@
+Read me:
+
+Usage:
+==========================================================================
+1. Configuration
+Configure the required APIs for rate limiting with an XML file in class path
+
+<RateLimitConfig>
+	<config>
+		<api>API NAME</api>
+		<maxBucketSize>MAX SIZE OF BUCKET</maxBucketSize>
+		<refillRate>RATE/MILLI SECOND AT WHICH BUCKET TO BE FILLED</refillRate>
+	</config>
+</RateLimitConfig>
+	
+Sample: Ref: RateLimitConfig.xml
+============================================================================
+2. Code:
+
+2.1 Construct service
+RateLimitService service = new RateLimitService(); // default name: RateLimitConfig.xml
+OR
+RateLimitService service = new RateLimitService(fileName); // if file name is different 
+
+2.2 Identify a mechanism to identify client call - it can be session variable, IP Address or a 
+token in request header 
+
+boolean withinLimit = service.checkLimitOfCall("10.0.0.0", "register");
+
+2.3
+Upon returning true in the above call, one can redirect to call API, else block the call.
+
+2.4 In case a new API needs to be configured on runtime, use the method:
+
+public void registerApi(String api, long maxBucketSize, long refillRate) in service class
+
+
+==================================================================================
+==================================================================================
+
+Example usage:
+
+Construct service in app configuration classes, and rate limiting code in request interceptor
+so that every call will be monitored for rate limiting.
+
+
+

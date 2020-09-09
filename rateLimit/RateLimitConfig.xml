@@ -1,0 +1,27 @@
+<RateLimitConfig>
+	<config>
+		<api>register</api>
+		<maxBucketSize>20</maxBucketSize>
+		<refillRate>5</refillRate>
+	</config>
+	<config>
+		<api>create</api>
+		<maxBucketSize>10</maxBucketSize>
+		<refillRate>2</refillRate>
+	</config>
+	<config>
+		<api>read</api>
+		<maxBucketSize>100</maxBucketSize>
+		<refillRate>10</refillRate>
+	</config>
+	<config>
+		<api>update</api>
+		<maxBucketSize>10</maxBucketSize>
+		<refillRate>5</refillRate>
+	</config>
+	<config>
+		<api>delete</api>
+		<maxBucketSize>50</maxBucketSize>
+		<refillRate>10</refillRate>
+	</config>
+</RateLimitConfig>
